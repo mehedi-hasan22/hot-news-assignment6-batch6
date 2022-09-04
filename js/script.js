@@ -20,8 +20,8 @@ const loadCatagory = async () => {
 }
 
 const buttonClick = (btn) => {
-    console.log('btn-clicked', btn);
     toggleSpinner(true);
+    console.log('btn-clicked', btn);
 }
 
 var newsItemLength = 0;
@@ -58,6 +58,8 @@ const displayNews = newsList => {
         const cardText = news.details
         const cardTitle = news.title
         const slicedText = cardText.slice(0, 200) + '...';
+        const modalBody = document.getElementById('modal-body-text')
+        modalBody.innerText = slicedText;
         const newsDiv = document.createElement('div');
         newsDiv.classList.add('col');
         newsDiv.innerHTML = `<div class="card mt-5 container">
@@ -84,11 +86,6 @@ const displayNews = newsList => {
     });
 }
 
-function modalOpen(title, description) {
-    let modalTitle = document.getElementById('newsDetailsModal');
-    modalTitle.innerText = title.textContent;
-    console.log(title)
-}
 
 
 const toggleSpinner = isLoading => {
