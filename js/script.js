@@ -71,7 +71,7 @@ const displayNews = newsList => {
             <p><img src="${news.author.img}" style="max-width: 50px;" class="rounded-circle"> ${authorName}</p>
             <p>${newsView} ${'views'}</p >
             <p>${news.rating.number}${'⭐'}</p>
-            <button class="btn btn-outline-primary py-0"  data-bs-toggle="modal" data-bs-target="#newsDetailsModal">${'↩'}</button>
+            <button class="btn btn-outline-primary py-0" data-bs-toggle="modal" data-bs-target="#newsDetailsModal">${'↩'}</button>
             </div >
           </div >
         </div >
