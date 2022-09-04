@@ -14,14 +14,14 @@ const loadCatagory = async () => {
         newsDiv.classList.add("col");
         newsDiv.innerHTML = `
         <button class="btn btn-primary" id="" onclick = "buttonClick(${i + 1}), loadNews(${i + 1}) " href = "" > ${catagory}</ > `
+        // start loader
         newsCatagory.appendChild(newsDiv);
     }
-
-
 }
 
 const buttonClick = (btn) => {
     console.log('btn-clicked', btn);
+    toggleSpinner(true);
 }
 
 var newsItemLength = 0;
@@ -35,7 +35,9 @@ const loadNews = async (item) => {
     const newsArrayLenght = data.data.length;
     newsItemLength = newsArrayLenght;
     displayNews(data.data)
-    console.log(data.data)
+
+    let founNews = document.getElementById('found-item-number')
+    founNews.innerText = newsArrayLenght;
 }
 
 const displayNews = newsList => {
@@ -78,7 +80,7 @@ const displayNews = newsList => {
         </div >
       </div > `
         newsContainer.appendChild(newsDiv)
-
+        toggleSpinner(false);
     });
 }
 
@@ -88,11 +90,24 @@ function modalOpen(title, description) {
     console.log(title)
 }
 
+
+const toggleSpinner = isLoading => {
+    const loaderSection = document.getElementById('loader');
+    if (isLoading) {
+        loaderSection.classList.remove('d-none')
+    }
+    else {
+        loaderSection.classList.add('d-none')
+    }
+}
+
 loadNews();
 
 loadCatagory();
 
 displayNews();
+
+
 
 
 
