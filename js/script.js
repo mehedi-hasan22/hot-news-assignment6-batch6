@@ -54,7 +54,8 @@ const displayNews = newsList => {
             newsView = 'No'
         }
         const cardText = news.details
-        const slicedText = cardText.slice(1, 200) + '...';
+        const cardTitle = news.title
+        const slicedText = cardText.slice(0, 200) + '...';
         const newsDiv = document.createElement('div');
         newsDiv.classList.add('col');
         newsDiv.innerHTML = `<div class="card mt-5 container">
@@ -64,14 +65,14 @@ const displayNews = newsList => {
           </div>
           <div class="col-md-8">
             <div class="card-body">
-              <h5 class="card-title">${news.title}</h5>
+              <h5 class="card-title">${cardTitle}</h5>
               <p class="card-text">${slicedText}</p>
             </div>
             <div class="d-flex justify-content-around">
             <p><img src="${news.author.img}" style="max-width: 50px;" class="rounded-circle"> ${authorName}</p>
             <p>${newsView} ${'views'}</p >
             <p>${news.rating.number}${'⭐'}</p>
-            <button class="btn btn-outline-primary py-0" data-bs-toggle="modal" data-bs-target="#newsDetailsModal">${'↩'}</button>
+            <button class="btn btn-outline-primary py-0" onclick="modalOpen(${cardTitle} , ${slicedText})" data-bs-toggle="modal" data-bs-target="#newsDetailsModal">${'↩'}</button>
             </div >
           </div >
         </div >
@@ -79,6 +80,12 @@ const displayNews = newsList => {
         newsContainer.appendChild(newsDiv)
 
     });
+}
+
+function modalOpen(title, description) {
+    let modalTitle = document.getElementById('newsDetailsModal');
+    modalTitle.innerText = title.textContent;
+    console.log(title)
 }
 
 loadNews();
